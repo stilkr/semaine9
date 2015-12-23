@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<title>
+tableau Javascript
+</title>
+</head>
+<body>
+
+<div class ="container">
+<row>
+
+<!-- colonne globale -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+    
+<!-- colonne vide -->    
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+	
+	<!-- colonne pseudo -->    
+	
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<input id="texte" placeholder="Votre pseudo"/>
+
+<!-- bouton ajouter -->    
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<button type="button" class="btn btn-info btn-md" id="ajouter"><span class="glyphicon glyphicon-ok"></span> Ajouter</button>
+</div>
+
+</div>
+
+<!-- colonne vide -->   
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="people">
+<ul id="liste">
+</ul>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<button type="button" class="btn btn-danger btn-md" id="annuler"><span class="glyphicon glyphicon-remove"></span> Annuler</button>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+
+</row>
+
+</div>
+
+
+
+<script type="text/javascript">
+$liste = document.getElementById("liste");
+$texte = document.getElementById("texte");
+$ajouter = document.getElementById("ajouter");
+$annuler = document.getElementById("annuler");
+
+tableau = ["Pim", "Pam", "Poum"];
+
+function afficherListe() {
+    elements = "";
+    for (i = 0; i < tableau.length; i++) {
+        elements += "<li>" + tableau[i] + "</li>";
+    }
+    $liste.innerHTML = elements;
+}
+
+function ajouter() {
+    tableau.push($texte.value);
+    afficherListe();
+}
+
+$ajouter.onclick = ajouter;
+
+function annuler() {
+                tableau.pop();
+                afficherListe();
+            }
+            
+$annuler.onclick = annuler;
+            
+            
+afficherListe();
+
+
+</script>
+</body>
+</html>

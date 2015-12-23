@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="stylesheet.css">
+        <title>Annuaire téléphonique</title>
+    </head>
+    <body>
+       <div class="container">
+           <row>
+               
+               <!-- Prénom -->
+               <div class = "col-lg-3 col-sm-6 col-xs-12">
+                   <label for="prenom">Prénom</label>
+            <input id="prenom" name="prenom" type="text" class="form-control" placeholder="Votre prénom" required="champ obligatoire" />
+                   </div>
+                   
+                 <!-- Nom -->
+                   <div class = "col-lg-3 col-sm-6 col-xs-12">
+                   <label for="nom">Nom</label>
+            <input id="nom" name="nom" type="text" class="form-control" placeholder="Votre nom" required="champ obligatoire" />
+                   </div>
+                   
+                <!-- Téléphone -->
+                   <div class = "col-lg-3 col-sm-6 col-xs-12">
+                   <label for="numero">Numéro de téléphone</label>
+            <input id="numero" name="numero" type="text" class="form-control" placeholder="Votre numéro de téléphone" required="champ obligatoire" />
+                   </div>
+                    <!-- Bouton -->
+                    <div class="col-lg-3 col-sm-6 col-xs-12">
+            <button type="button" class="btn btn-success btn-md" id="ajouter" name="ajouter" type="submit">Ajouter</button>
+       </div>
+           </row>
+           <row>
+                      <ul id="liste"></ul>
+
+<div class = "col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                   <label for="recherche">Recherche</label>
+    <input id="recherche" placeholder="Recherche" />
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <button type="button" class="btn btn-success btn-md" id="rechercher">Rechercher</button>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="resultatRecherche">
+<ul class="list-group-item-success" id="resultats"></ul>
+</div>
+          </row>
+        <script type="text/javascript">
+            
+            $liste = document.getElementById("liste");
+$prenom = document.getElementById("prenom");
+$nom = document.getElementById("nom");
+$numero = document.getElementById("numero");
+$ajouter = document.getElementById("ajouter");
+$recherche = document.getElementById("recherche");
+$rechercher = document.getElementById("rechercher");
+$resultats = document.getElementById("resultats");
+
+contacts = [{
+    prenom: "Maurice",
+    nom: "Dupont",
+    numero: "0666666666"
+}, {
+    prenom: "Daphné",
+    nom: "Martin",
+    numero: "0999999999"
+}];
+
+function texteContact(contact) {
+    return contact.prenom + " " + contact.nom + " (" + contact.numero + ")";
+}
+
+function afficherListe() {
+    elements = "";
+    for (i = 0; i < contacts.length; i++) {
+        elements += "<li>" + texteContact(contacts[i]) + "</li>";
+    }
+    $liste.innerHTML = elements;
+}
+
+function ajouter() {
+    contacts.push({
+        prenom: $prenom.value,
+        nom: $nom.value,
+        numero: $numero.value
+    });
+    afficherListe();
+}
+
+function rechercher() {
+    recherche = $recherche.value;
+    elements = "";
+    for (i = 0; i < contacts.length; i++) {
+        if (contacts[i].prenom == recherche || contacts[i].nom == recherche || contacts[i].numero == recherche) {
+            elements += "<li>" + texteContact(contacts[i]) + "</li>";
+        }
+    }
+    $resultats.innerHTML = elements;
+}
+
+$ajouter.onclick = ajouter;
+$rechercher.onclick = rechercher;
+afficherListe();
+
+        </script>
+    </body>
+</html>
